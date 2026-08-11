@@ -1,0 +1,10 @@
+$: note(`
+  d2 ~ [d2 d3] ~
+  a1 ~ c2 [~ d2]
+`)
+.s("sawtooth")
+.lpf(sine.range(200, 1000).slow(8))
+.release(.12)
+.gain(.6)
+
+

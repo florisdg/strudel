@@ -1,0 +1,59 @@
+// 174 BPM Drum & Bass
+setcpm(174 / 4)
+
+// Main drums
+$: s(`
+  bd ~ ~ ~ ~ ~ bd ~ ~ ~ bd ~ ~ ~ ~ ~,
+  ~ ~ ~ ~ sd ~ ~ ~ ~ ~ ~ ~ sd ~ ~ ~,
+  hh*16
+`)
+.bank("RolandTR909")
+.gain(0.3)
+
+// Ghost snare / breakbeat texture
+$: s(`
+  ~ ~ ~ sd ~ ~ ~ ~ ~ sd ~ ~ ~ ~ sd ~
+`)
+.bank("RolandTR909")
+.gain(.18)
+
+// Open hats for movement
+$: s(`
+  ~ ~ ~ oh ~ ~ ~ ~ ~ ~ ~ oh ~ ~ ~ ~
+`)
+.bank("RolandTR909")
+.gain(.25)
+
+// Reese-ish bass
+$: note(`
+  d2 ~ d2 ~
+  [d2 a1] ~ c2 ~
+`)
+.s("sawtooth")
+.lpf(550)
+.release(.15)
+.gain(.55)
+
+// Layer underneath the bass
+$: note(`
+  d2 ~ d2 ~
+  [d2 a1] ~ c2 ~
+`)
+.s("triangle")
+.lpf(350)
+.release(.2)
+.gain(.45)
+
+// Atmospheric chords
+$: note(`
+  <[d4 f4 a4]
+   [bb3 d4 f4]
+   [c4 e4 g4]
+   [a3 c4 e4]>
+`)
+.s("sawtooth")
+.lpf(900)
+.attack(.15)
+.release(1.5)
+.room(.7)
+.gain(.12)
