@@ -1,0 +1,62 @@
+// JUNO-inspired synthwave
+setcpm(112 / 4)
+
+// Crisp 1980s drum-machine groove
+$: s("bd ~ ~ ~, ~ ~ sd ~, hh*8")
+  .bank("RolandTR707")
+  .gain(.15)
+
+$: s("~ ~ ~ oh")
+  .bank("RolandTR707")
+  .gain(.18)
+
+// Pulsing octave bass
+$: note("<[a1 a2]*2 [a1 a2]*2 [f1 f2]*2 [g1 g2]*2>")
+  .s("square")
+  .lpf(420)
+  .attack(.02)
+  .release(.18)
+  .gain(.34)
+
+// Detuned saw layers emulate a JUNO oscillator and chorus
+$: note("<[a3,c4,e4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4]>")
+  .s("sawtooth")
+  .detune("<0 7 -5 4>")
+  .lpf(sine.range(900, 2400).slow(8))
+  .lpq(3)
+  .attack(.08)
+  .release(1.4)
+  .room(.55)
+  .pan(.3)
+  .gain(.19)
+
+$: note("<[a3,c4,e4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4]>")
+  .s("square")
+  .detune("<8 -6 5 -8>")
+  .lpf(sine.range(700, 1900).slow(8))
+  .attack(.08)
+  .release(1.2)
+  .room(.4)
+  .pan(.7)
+  .gain(.08)
+
+// Bright arpeggio
+$: note("<[a4 c5 e5 c5]*2 [a4 c5 e5 c5]*2 [f4 a4 c5 a4]*2 [g4 b4 d5 b4]*2>")
+  .s("sawtooth")
+  .lpf(2800)
+  .release(.12)
+  .delay(.22)
+  .delaytime(.375)
+  .delayfeedback(.3)
+  .gain(.12)
+
+// Expressive lead enters every other cycle
+$: note("<~ [e5 ~ c5 e5] ~ [d5 ~ b4 d5]>")
+  .s("square")
+  .vib(5)
+  .vibmod(.18)
+  .lpf(2200)
+  .attack(.04)
+  .release(.3)
+  .room(.35)
+  .gain(.16)
